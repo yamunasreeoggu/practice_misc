@@ -33,7 +33,7 @@ resource "aws_instance" "instance" {
 resource "aws_route53_record" "dns-record" {
   count   = length(var.components)
   zone_id = "Z10281701O26X6KFZM8G8" #from aws route53 record hosted zonde ID
-  name    = "${element(var.components, count.index)}-dev" #record will be created as "name-dev"
+  name    = "${element(var.components, count.index)}" #record will be created as "name-dev"
   type    = "A"
   ttl     = 10
   records = [element(aws_instance.instance.*.private_ip, count.index)] # records will be created using private IP
